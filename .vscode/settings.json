@@ -61,6 +61,7 @@
         "ios": "cpp",
         "iostream": "cpp",
         "__node_handle": "cpp",
-        "locale": "cpp"
+        "locale": "cpp",
+        "__locale": "cpp"
     }
 }
