@@ -1,5 +1,6 @@
 #include <stdint.h>
 #include "HashTable.h"
+#include "HashTableExtendibleHashing.h"
 #include <iostream>
 
 int main(int argc, char const *argv[])
