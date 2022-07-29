@@ -4,18 +4,14 @@
 
 int main(int argc, char const *argv[])
 {
-    HTOpenAddr<uint64_t, uint64_t> ht(1024);
+    HTExtendibleHashing<uint64_t, uint64_t> ht;
 
     for (size_t i = 0; i < 512; i++)
     {
         ht.insert(i, i);        
     }
     
-    ht.insert(1234, 1234);
-    uint64_t val;
-    ht.lookup(1234, val);
-
-    std::cout << val << std::endl;
+    // std::cout << val << std::endl;
 
     // ht.print();
     for (size_t i = 0; i < 512; i++)
@@ -26,6 +22,6 @@ int main(int argc, char const *argv[])
             std::cout << "didn't find " << i << " but got " << val << std::endl;
         }
     }
-
+    ht.print_dir();
     return 0;
 }
