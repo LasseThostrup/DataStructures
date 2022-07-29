@@ -9,7 +9,7 @@
 #include <cassert>
 #include <math.h>
 #include "HashTable.h"
-
+#include <unordered_set>
 
 template <class Key, class Value>
 class HTExtendibleHashing : public HashTable<Key, Value> {
@@ -71,7 +71,18 @@ public:
         directory[0] = new Bucket{0,1,0};
         directory[1] = new Bucket{1,1,0};
     }
-    ~HTExtendibleHashing() {}
+    ~HTExtendibleHashing() {
+        std::unordered_set<Bucket*> deleted;
+        for (size_t i = 0; i < directory.size(); i++)
+        {
+            auto bucket_ptr = directory[i];
+            if (deleted.find(bucket_ptr) == deleted.end()) {
+                delete bucket_ptr;
+                deleted.insert(bucket_ptr);
+            }
+        }
+        
+    }
 
 
     virtual void insert(Key key, Value value) override {
