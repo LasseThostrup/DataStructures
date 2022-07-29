@@ -41,7 +41,7 @@ void testLinearHashing() {
             exit(-1);
         }
     }
-    // ht.print();
+    ht.print();
     // std::cout << val << std::endl;
 
     // ht.print();
