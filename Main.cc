@@ -21,6 +21,7 @@ int main(int argc, char const *argv[])
         ht.lookup(i, val);
         if (val != i) { 
             std::cout << "didn't find " << i << " but got " << val << std::endl;
+            exit(-1);
         }
     }
     ht.print_dir();

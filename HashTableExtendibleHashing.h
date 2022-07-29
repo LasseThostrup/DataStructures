@@ -125,14 +125,14 @@ public:
     }
 
     void print_dir() {
-        std::cout << " ------------ directory size: " << directory.size() << std::endl;
+        std::cout << " ------------ directory size: " << directory.size() << " global depth: " << global_depth << std::endl;
         for (size_t i = 0; i < directory.size(); i++)
         {
             if (i != directory[i]->key)
             {
                 continue;
             }
-            std::cout << " i: " << i << " - key: " << directory[i]->key << " - ptr: " << reinterpret_cast<uintptr_t>(directory[i]) << std::endl;
+            std::cout << " i: " << i << " - key: " << directory[i]->key << " local depth: " << directory[i]->local_depth << std::endl;
             
             for (size_t j = 0; j < directory[i]->size; j++)
             {
