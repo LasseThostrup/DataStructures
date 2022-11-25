@@ -31,7 +31,7 @@ class HTExtendibleHashing : public HashTable<Key, Value> {
     uint32_t global_depth = 1;
 
     void split(Bucket* bucket, uint64_t hashkey) {
-        // print_dir();
+        // print();
         hashkey = bucket->key;
         // std::cout << "splitting on bucket " << hashkey << " local depth: " << bucket->local_depth << " global depth: " << global_depth << std::endl;
         //determine "sibling" directory location for new bucket (i.e., next directory location that points to same bucket)
@@ -99,10 +99,10 @@ public:
 
         if (bucket_ptr->local_depth < global_depth) { //Add new bucket without increasing global size
             // if (key == 14) 
-            //     print_dir();
+            //     print();
             split(bucket_ptr, hashkey);
             // if (key == 14) {
-            //     print_dir();
+            //     print();
             //     exit(-1);
             // }
             return insert(key, value);
@@ -111,7 +111,7 @@ public:
         //increase global size
         assert(bucket_ptr->local_depth == global_depth);  
         // std::cout << "growing to size: " << directory.size()*2 << std::endl;
-        // print_dir();
+        // print();
 
         //Duplicate directory
         directory.reserve(directory.size()*2);
@@ -135,7 +135,7 @@ public:
         return false;
     }
 
-    void print_dir() {
+    void print() {
         std::cout << " ------------ directory size: " << directory.size() << " global depth: " << global_depth << std::endl;
         for (size_t i = 0; i < directory.size(); i++)
         {
@@ -153,5 +153,6 @@ public:
         }
         std::cout << " ------------ " << std::endl;
     }
+
 
 };

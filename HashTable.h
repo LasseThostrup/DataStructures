@@ -26,6 +26,32 @@ protected:
 public:
     virtual void insert(Key key, Value value) = 0;
     virtual bool lookup(Key key, Value &value_ret)  = 0;
+
+    bool test() {
+        bool success = true;
+        size_t size = 1234;
+        for (size_t i = 0; i < size; i++)
+        {
+            this->insert(i, i);        
+            uint64_t val;
+            success &= this->lookup(i, val);
+            if (val != i | !success) {
+                std::cout << "didn't find " << i << " but got " << val << std::endl;
+                exit(-1);
+            }
+        }
+
+        for (size_t i = 0; i < size; i++)
+        {
+            uint64_t val;
+            this->lookup(i, val);
+            if (val != i | !success) { 
+                std::cout << "didn't find " << i << " but got " << val << std::endl;
+                exit(-1);
+            }
+        }
+        return success;
+    };
 };
 
 
@@ -72,7 +98,7 @@ public:
         //Optimization ideas: use radix hashing and take one more bit for hashing - use set of hash tables?
         if (1.0*filled / ht_size > 0.5) { 
             auto new_ht_size = ht_size*2;
-            std::cout << "Growing ht to size: " << new_ht_size << std::endl;
+            // std::cout << "Growing ht to size: " << new_ht_size << std::endl;
             auto new_hasharray = std::vector<Entry>(new_ht_size, {State::FREE});
             for (size_t i = 0; i < ht_size; i++)
             {

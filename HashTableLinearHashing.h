@@ -66,7 +66,7 @@ public:
                 head = std::move(tmp);
             }
 
-            std::cout << "Splitting - next bucket to split: " << next_split << std::endl;
+            // std::cout << "Splitting - next bucket to split: " << next_split << std::endl;
 
             next_split++;
             if (next_split == M) {
@@ -76,7 +76,7 @@ public:
             
                 M *= 2;
                 next_split = 0;
-                std::cout << "Increased M to " << M << " hash table size: " << buckets.size() << std::endl;
+                // std::cout << "Increased M to " << M << " hash table size: " << buckets.size() << std::endl;
             }
         }
     }
